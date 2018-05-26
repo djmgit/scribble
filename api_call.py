@@ -2,7 +2,7 @@ import json
 import requests
 from config import *
 
-def APi_call:
+def Api_call:
 	def __init__(self):
 		self.API_BASE_URL = API_BASE_URL
 		self.requestPayload = {}
