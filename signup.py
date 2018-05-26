@@ -7,9 +7,10 @@ class Signup:
 		self.username = ""
 		self.password = ""
 		self.repassword = ""
+		self.path = "signup"
 
 	def get_cred(self):
-		username = raw_input("Enter username")
+		username = input("Enter username")
 		password = getpass.getpass(prompt="Enter password")
 		retype_password = getpass.getpass(prompt="Retype password")
 
@@ -28,7 +29,7 @@ class Signup:
 		payload['username'] = self.username
 		payload['password'] = self.password
 
-		resp = Api_call.apicall(payload, headers)
+		resp = Api_call().apicall(payload, headers, self.path)
 		if resp.get("status") == USERNAME_NOT_FOUND:
 			print ("Please enter an username")
 			return 0
