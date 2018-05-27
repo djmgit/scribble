@@ -14,6 +14,6 @@ class Api_call:
 		if headers.get("Authorization"):
 			self.headers["Authorization"] = headers.get("Authorization")
 
-		resp = requests.request("POST", self.API_BASE_URL + '/' + path, data=json.dumps(payload), headers=headers)
+		resp = requests.request("POST", self.API_BASE_URL + '/' + path, data=json.dumps(payload), headers=self.headers)
 
 		return resp.json()

@@ -10,9 +10,9 @@ class Signup:
 		self.path = "signup"
 
 	def get_cred(self):
-		username = input("Enter username")
-		password = getpass.getpass(prompt="Enter password")
-		retype_password = getpass.getpass(prompt="Retype password")
+		username = input("Enter username : ")
+		password = getpass.getpass(prompt="Enter password : ")
+		retype_password = getpass.getpass(prompt="Retype password : ")
 
 		self.username = username
 		self.password = password
@@ -42,7 +42,7 @@ class Signup:
 			data = resp.get("data")
 			code = data.get("code")
 			message = data.get("message")
-			print ("{} : {}").format(code, message)
+			print ("{} : {}".format(code, message))
 			return 0
 
 		if resp.get("status") == OK:
