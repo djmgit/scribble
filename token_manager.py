@@ -27,13 +27,13 @@ class Token_Manager:
 		token_file_path = os.path.join(self.token_path, self.token_file_name)
 		
 		if not os.path.exists(token_file_path):
-			print ("You are not logged in. Please log in")
+			print ("You are not logged in. Please log in first.")
 			return 0
 
 		token_file = open(token_file_path)
 		token = json.loads(token_file.read())
 		if not token or token == "" or not token.get("token") or token.get("token") == "":
-			print ("You are not logged in. Please log in")
+			print ("You are not logged in. Please log in first.")
 			return 0
 
 		token = token.get("token")
