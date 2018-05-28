@@ -19,7 +19,14 @@ s.set_params()
 print (s.view_all())
 '''
 
+'''
 from view_by_id import View_by_id
 s = View_by_id()
 s.set_params(5)
 print (s.view_by_id())
+'''
+
+from search import Search
+s = Search()
+s.set_params("testing")
+print (s.search())
