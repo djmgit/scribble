@@ -50,4 +50,6 @@ class Login:
 			print ("You have been successfuly logged in")
 			return 1
 
+		return 0
+
 

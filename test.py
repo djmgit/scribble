@@ -26,7 +26,17 @@ s.set_params(5)
 print (s.view_by_id())
 '''
 
+'''
 from search import Search
 s = Search()
 s.set_params("testing")
 print (s.search())
+'''
+
+from delete import Delete
+s = Delete()
+s.set_params(100)
+print (s.delete())
+
+
+

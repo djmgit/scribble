@@ -62,3 +62,5 @@ class Note:
 		if resp.get("status") == OK:
 			print ("Your note has been save successfully!")
 			return 1
+
+		return 0
