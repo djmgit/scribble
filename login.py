@@ -1,6 +1,7 @@
 from statuses import *
 import getpass
 from api_call import Api_call
+from token_manager import Token_Manager
 
 class Login:
 	def __init__(self):
@@ -14,7 +15,6 @@ class Login:
 
 		self.username = username
 		self.password = password
-		self.repassword = retype_password
 
 	def login(self):
 		headers = {}
@@ -42,9 +42,12 @@ class Login:
 			return 0
 
 		if resp.get("status") == OK:
-			print ("You have been successfuly logged in")
-
 			data = resp.get("data")
 			auth_token = data.get("auth_token")
 
+			r = Token_Manager().save_token(auth_token)
+
+			print ("You have been successfuly logged in")
 			return 1
+
+

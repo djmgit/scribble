@@ -2,7 +2,7 @@ import json
 from config import token_path
 import os
 
-class Token:
+class Token_Manager:
 
 	def __init__(self):
 		self.token_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), token_path)
@@ -20,6 +20,8 @@ class Token:
 		token_file.write(json.dumps(token_data))
 		token_file.close()
 
+		return 1
+
 	def get_token(self):
 
 		token_file_path = os.path.join(self.token_path, self.token_file_name)
@@ -35,4 +37,5 @@ class Token:
 			return 0
 
 		token = token.get("token")
+		
 		return token

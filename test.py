@@ -1,5 +1,5 @@
-from signup import Signup
+from login import Login
 
-s = Signup()
+s = Login()
 s.get_cred()
-print (s.signup())
+print (s.login())
