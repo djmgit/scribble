@@ -9,7 +9,11 @@ from note import Note
 from search import Search
 from delete import Delete
 
+# declaring constants
+
 ACTIONS = ["register", "login", "note", "view", "search", "delete"]
+
+# defining functions to take care of different actions
 
 def parse_and_execute_signup():
 	obj = Signup()
@@ -151,6 +155,8 @@ def parse_and_execute_search():
 if len(sys.argv) == 1:
 	print ("No action specified. Please specify an action : register, login, note, view, search, delete")
 	exit()
+
+# extracting the action from the command line
 
 action = sys.argv[1]
 
