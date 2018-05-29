@@ -67,6 +67,29 @@ def parse_and_execute_note():
 	if status == 1:
 		print ("Scribble executed successfully!")
 
+def parse_and_execute_view():
+	note_id = None
+
+	parser = optparse.OptionParser()
+	parser.add_option('-i', '--id', dest='note_id',
+                  help='Enter note id', type="int")
+
+	(options, args) = parser.parse_args()
+
+	if options.note_id:
+		note_id = options.note_id
+		obj = View_by_id()
+		obj.set_params(note_id)
+		status = obj.view_by_id()
+
+	else:
+		obj = View_all()
+		obj.set_params()
+		status = obj.view_all()
+
+	if status == 1:
+		print ("Scribble executed successfully!")
+
 if len(sys.argv) == 1:
 	print ("No action specified. Please specify an action : register, login, note, view, search, delete")
 	exit()
