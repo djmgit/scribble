@@ -40,6 +40,33 @@ def parse_and_execute_note():
 
 	(options, args) = parser.parse_args()
 
+	if not options.note_title:
+		note_title = input("Enter a title for your note : ")
+		if note_title == "":
+			note_title = None
+
+	if not options.keywords:
+		keywords = input("Enter keywords for your note (optional) : ")
+		if keywords == "":
+			keywords = None
+
+	if not options.category:
+		category = input("Enter a category for note (optional) : ")
+		if category == "":
+			category = None
+
+	note_body = editor.edit(contents=str.encode("# Enter your content here..."))
+	note_body = note_body.decode()
+	if note_body == "":
+		note_body = None
+
+	obj = Note()
+	obj.set_params(note_title, note_body, keywords, category)
+	status = obj.save_note()
+
+	if status == 1:
+		print ("Scribble executed successfully!")
+
 if len(sys.argv) == 1:
 	print ("No action specified. Please specify an action : register, login, note, view, search, delete")
 	exit()
