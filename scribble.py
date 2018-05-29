@@ -119,6 +119,34 @@ def parse_and_execute_delete():
 	if status == 1:
 		print ("Scribble executed successfully!")
 
+def parse_and_execute_search():
+	fields, phrase = None, None
+
+	parser = optparse.OptionParser()
+	parser.add_option('-p', '--phrase', dest='phrase',
+                  help='Enter phrase to search (if more than single word, please use quotes')
+	parser.add_option('-f', '--fields', dest='fields',
+                  help='Enter fields to search (separated by comma, without space, fields can be note_title, note_body, keywords, category')
+
+	(options, args) = parser.parse_args()
+
+	if not options.phrase:
+		phrase = input("Enter phrase to search : ")
+		if phrase == "":
+			phrase = None
+	else:
+		phrase = options.phrase
+
+	if options.fields:
+		fields = options.fields.split(",")
+		fields = [field.trim() for field in fields]
+
+	obj = Search()
+	obj.set_params(phrase, fields)
+	status = obj.search()
+
+	if status == 1:
+		print ("Scribble executed successfully!")
 
 if len(sys.argv) == 1:
 	print ("No action specified. Please specify an action : register, login, note, view, search, delete")
