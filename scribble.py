@@ -139,7 +139,7 @@ def parse_and_execute_search():
 
 	if options.fields:
 		fields = options.fields.split(",")
-		fields = [field.trim() for field in fields]
+		fields = [field.strip() for field in fields]
 
 	obj = Search()
 	obj.set_params(phrase, fields)
