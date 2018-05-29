@@ -40,20 +40,27 @@ def parse_and_execute_note():
 
 	(options, args) = parser.parse_args()
 
+
 	if not options.note_title:
 		note_title = input("Enter a title for your note : ")
 		if note_title == "":
 			note_title = None
+	else:
+		note_title = options.note_title
 
 	if not options.keywords:
 		keywords = input("Enter keywords for your note (optional) : ")
 		if keywords == "":
 			keywords = None
+	else:
+		keywords = options.keywords
 
 	if not options.category:
 		category = input("Enter a category for note (optional) : ")
 		if category == "":
 			category = None
+	else:
+		category = options.category
 
 	note_body = editor.edit(contents=str.encode("# Enter your content here..."))
 	note_body = note_body.decode()
