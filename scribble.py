@@ -97,6 +97,29 @@ def parse_and_execute_view():
 	if status == 1:
 		print ("Scribble executed successfully!")
 
+def parse_and_execute_delete():
+	note_id = None
+
+	parser = optparse.OptionParser()
+	parser.add_option('-i', '--id', dest='note_id',
+                  help='Enter note id to delete', type="int")
+
+	(options, args) = parser.parse_args()
+
+	if not options.note_id:
+		print ("Please enter the id of the note you want to delete.")
+		exit()
+
+	note_id = options.note_id
+
+	obj = Delete()
+	obj.set_params(note_id)
+	status = obj.delete()
+
+	if status == 1:
+		print ("Scribble executed successfully!")
+
+
 if len(sys.argv) == 1:
 	print ("No action specified. Please specify an action : register, login, note, view, search, delete")
 	exit()
