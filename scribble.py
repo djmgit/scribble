@@ -152,32 +152,37 @@ def parse_and_execute_search():
 	if status == 1:
 		print ("Scribble executed successfully!")
 
-if len(sys.argv) == 1:
-	print ("No action specified. Please specify an action : register, login, note, view, search, delete")
-	exit()
+def main():
 
-# extracting the action from the command line
+	if len(sys.argv) == 1:
+		print ("No action specified. Please specify an action : register, login, note, view, search, delete")
+		exit()
+	
+	# extracting the action from the command line
+	
+	action = sys.argv[1]
+	
+	if action not in ACTIONS:
+		print ("Please specify a valid action : register, login, note, view, search, delete")
+		exit()
+	
+	if action == "register":
+		parse_and_execute_signup()
+	
+	if action == "login":
+		parse_and_execute_login()
+	
+	if action == "note":
+		parse_and_execute_note()
+	
+	if action == "view":
+		parse_and_execute_view()
+	
+	if action == "search":
+		parse_and_execute_search()
+	
+	if action == "delete":
+		parse_and_execute_delete()
 
-action = sys.argv[1]
-
-if action not in ACTIONS:
-	print ("Please specify a valid action : register, login, note, view, search, delete")
-	exit()
-
-if action == "register":
-	parse_and_execute_signup()
-
-if action == "login":
-	parse_and_execute_login()
-
-if action == "note":
-	parse_and_execute_note()
-
-if action == "view":
-	parse_and_execute_view()
-
-if action == "search":
-	parse_and_execute_search()
-
-if action == "delete":
-	parse_and_execute_delete()
+if __name__ == "__main__":
+	main()
