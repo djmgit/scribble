@@ -5,7 +5,7 @@ import os
 class Token_Manager:
 
 	def __init__(self):
-		self.token_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), token_path)
+		self.token_path = os.path.join(os.path.expanduser("~"), token_path)
 		if not os.path.exists(self.token_path):
 			os.makedirs(self.token_path)
 
