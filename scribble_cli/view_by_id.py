@@ -46,8 +46,13 @@ class View_by_id:
 			print ("{} : {}".format(code, message))
 			return 0
 
-		data = resp.get("data")[0]
+		data = resp.get("data")
+
+		if len(data) == 0:
+			print ("No note with id {} found!".format(self.note_id))
+			exit()
 		
+		data = data[0]
 		print ("\n")
 		print ("#{} {}".format(data["note_id"], data["note_title"]))
 		print ("====================================================================")

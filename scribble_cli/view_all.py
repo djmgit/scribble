@@ -40,6 +40,11 @@ class View_all:
 			return 0
 
 		data = resp.get("data")
+
+		if len(data) == 0:
+			print ("You have not created any notes yet!")
+			exit()
+
 		table = []
 		table_headers = ["Note id", "Note"]
 		for note in data:
