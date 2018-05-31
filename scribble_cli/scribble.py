@@ -1,13 +1,13 @@
 import optparse
 import sys
 import editor
-from signup import Signup
-from login import Login
-from view_all import View_all
-from view_by_id import View_by_id
-from note import Note
-from search import Search
-from delete import Delete
+from .signup import Signup
+from .login import Login
+from .view_all import View_all
+from .view_by_id import View_by_id
+from .note import Note
+from .search import Search
+from .delete import Delete
 
 # declaring constants
 

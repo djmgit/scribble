@@ -1,7 +1,7 @@
-from statuses import *
+from .statuses import *
 import getpass
-from api_call import Api_call
-from token_manager import Token_Manager
+from .api_call import Api_call
+from .token_manager import Token_Manager
 from tabulate import tabulate
 
 class View_all:

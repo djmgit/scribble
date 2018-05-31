@@ -1,6 +1,6 @@
-from statuses import *
+from .statuses import *
 import getpass
-from api_call import Api_call
+from .api_call import Api_call
 
 class Signup:
 	def __init__(self):

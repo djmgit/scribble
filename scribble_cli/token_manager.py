@@ -1,5 +1,5 @@
 import json
-from config import token_path
+from .config import token_path
 import os
 
 class Token_Manager:
@@ -25,7 +25,6 @@ class Token_Manager:
 	def get_token(self):
 
 		token_file_path = os.path.join(self.token_path, self.token_file_name)
-		print (token_file_path)
 		
 		if not os.path.exists(token_file_path):
 			print ("You are not logged in. Please log in first.")

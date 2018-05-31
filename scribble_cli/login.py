@@ -1,7 +1,7 @@
-from statuses import *
+from .statuses import *
 import getpass
-from api_call import Api_call
-from token_manager import Token_Manager
+from .api_call import Api_call
+from .token_manager import Token_Manager
 
 class Login:
 	def __init__(self):

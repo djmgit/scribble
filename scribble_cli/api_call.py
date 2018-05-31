@@ -1,6 +1,6 @@
 import json
 import requests
-from config import API_BASE_URL
+from .config import API_BASE_URL
 
 class Api_call:
 	def __init__(self):
