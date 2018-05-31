@@ -7,6 +7,11 @@ def readme():
     with open('README.rst') as f:
         return f.read()
 
+def get_dependencies():
+  with open("requirements.txt") as req:
+    lines = req.readlines()
+    lines = [line.strip() for line in lines]
+    return lines
 
 setup(name='scribble',
       version='0.1',
@@ -24,11 +29,7 @@ setup(name='scribble',
       author_email='djmdeveloper060796@gmail.com',
       license='MIT',
       packages=['scribble_cli'],
-      install_requires=[
-          'requests',
-          'tabulate',
-          'python-editor'
-      ],
+      install_requires=get_dependencies(),
       test_suite='nose.collector',
       tests_require=['nose', 'nose-cover3'],
       entry_points={
