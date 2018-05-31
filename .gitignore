@@ -1,3 +1,6 @@
 .scribble/
 __pycache__/
 *.pyc
+build/
+dist/
+scribble.egg-info/
