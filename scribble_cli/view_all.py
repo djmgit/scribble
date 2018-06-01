@@ -29,7 +29,6 @@ class View_all:
 
 		if resp.get("status") == TOKEN_NOT_FOUND or resp.get("status") == NOT_LOGGED_IN :
 			print ("You are not logged in. Please log in first.")
-			print ("hehe")
 			return 0
 
 		if resp.get("status") == ERROR:

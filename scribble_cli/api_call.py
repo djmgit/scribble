@@ -13,7 +13,7 @@ class Api_call:
 		json_data = ""
 
 		if headers.get("Authorization"):
-			self.headers["Authorization"] = headers.get("Authorization")
+			self.headers["Authorization"] = "Bearer {}".format(headers.get("Authorization"))
 
 		'''
 		this is a hack. This application uses free version of hasura. The cluster sleeps
