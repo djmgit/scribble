@@ -73,5 +73,3 @@ class Search:
 		print ("\n")
 
 		return 1
-
-		
