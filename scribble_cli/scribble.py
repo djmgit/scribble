@@ -1,6 +1,7 @@
 import optparse
 import sys
 import editor
+import signal
 from .signup import Signup
 from .login import Login
 from .view_all import View_all
@@ -17,6 +18,11 @@ ACTIONS = ["register", "login", "note", "view", "search", "delete"]
 logger = Logger()
 
 # defining functions to take care of different actions
+
+def sigint_handler(signum, frame):
+	print ("\n")
+	print('shutting down PlotIt...')
+	exit()
 
 def parse_and_execute_signup():
 	obj = Signup()
@@ -39,11 +45,11 @@ def parse_and_execute_note():
 
 	parser = optparse.OptionParser()
 	parser.add_option('-t', '--title', dest='note_title',
-                  help='Enter note title')
+				  help='Enter note title')
 	parser.add_option('-k', '--keywords', dest='keywords',
-                  help='Enter keywords (separated by comma with no spaces in between')
+				  help='Enter keywords (separated by comma with no spaces in between')
 	parser.add_option('-c', '--category', dest='category',
-                  help='Enter category (optional)')
+				  help='Enter category (optional)')
 
 	(options, args) = parser.parse_args()
 
@@ -86,7 +92,7 @@ def parse_and_execute_view():
 
 	parser = optparse.OptionParser()
 	parser.add_option('-i', '--id', dest='note_id',
-                  help='Enter note id', type="int")
+				  help='Enter note id', type="int")
 
 	(options, args) = parser.parse_args()
 
@@ -109,7 +115,7 @@ def parse_and_execute_delete():
 
 	parser = optparse.OptionParser()
 	parser.add_option('-i', '--id', dest='note_id',
-                  help='Enter note id to delete', type="int")
+				  help='Enter note id to delete', type="int")
 
 	(options, args) = parser.parse_args()
 
@@ -131,9 +137,9 @@ def parse_and_execute_search():
 
 	parser = optparse.OptionParser()
 	parser.add_option('-p', '--phrase', dest='phrase',
-                  help='Enter phrase to search (if more than single word, please use quotes')
+				  help='Enter phrase to search (if more than single word, please use quotes')
 	parser.add_option('-f', '--fields', dest='fields',
-                  help='Enter fields to search (separated by comma, without space, fields can be note_title, note_body, keywords, category')
+				  help='Enter fields to search (separated by comma, without space, fields can be note_title, note_body, keywords, category')
 
 	(options, args) = parser.parse_args()
 
@@ -156,6 +162,8 @@ def parse_and_execute_search():
 		logger.success("Scribble executed successfully!")
 
 def main():
+
+	signal.signal(signal.SIGINT, sigint_handler)
 
 	if len(sys.argv) == 1:
 		print ("No action specified. Please specify an action : register, login, note, view, search, delete")
