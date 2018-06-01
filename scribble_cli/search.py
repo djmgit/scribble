@@ -3,6 +3,7 @@ import getpass
 from .api_call import Api_call
 from .token_manager import Token_Manager
 from tabulate import tabulate
+from .logger import Logger
 
 class Search:
 
@@ -12,6 +13,7 @@ class Search:
 		self.search_data = ""
 		self.fields = ""
 		self.body_length = 72
+		self.logger = Logger()
 
 	def set_params(self, search_data, fields=None):
 		token = Token_Manager().get_token()
@@ -37,27 +39,27 @@ class Search:
 		resp = Api_call().apicall(payload, headers, self.path)
 
 		if resp.get("status") == TOKEN_NOT_FOUND or resp.get("status") == NOT_LOGGED_IN :
-			print ("You are not logged in. Please log in first.")
+			self.logger.fail("You are not logged in. Please log in first.")
 			return 0
 
 		if resp.get("status") == SEARCH_DATA_NOT_FOUND:
-			print ("Please mention search data")
+			self.logger.fail("Please mention search data")
 			return 0
 
 		if resp.get("status") == DATA_NOT_FOUND:
-			print ("No matching data found!")
+			self.logger.fail("No matching data found!")
 			return 1
 
 		if resp.get("status") == ERROR:
 			data = resp.get("data")
 			code = data.get("code")
 			message = data.get("message")
-			print ("{} : {}".format(code, message))
+			self.logger.fail("{} : {}".format(code, message))
 			return 0
 
 		data = resp.get("data")
 		if len(data) == 0:
-			print ("NO matching data found!")
+			self.logger.info("NO matching data found!")
 			return 1
 
 		table = []

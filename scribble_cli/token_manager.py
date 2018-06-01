@@ -1,6 +1,7 @@
 import json
 from .config import token_path
 import os
+from .logger import Logger
 
 class Token_Manager:
 
@@ -10,6 +11,7 @@ class Token_Manager:
 			os.makedirs(self.token_path)
 
 		self.token_file_name = "token.json"
+		self.logger = Logger()
 
 	def save_token(self, token):
 
@@ -27,7 +29,7 @@ class Token_Manager:
 		token_file_path = os.path.join(self.token_path, self.token_file_name)
 		
 		if not os.path.exists(token_file_path):
-			print ("You are not logged in. Please log in first.")
+			self.logger.fail("You are not logged in. Please log in first.")
 			return 0
 
 		token_file = open(token_file_path)

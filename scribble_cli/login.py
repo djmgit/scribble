@@ -2,12 +2,14 @@ from .statuses import *
 import getpass
 from .api_call import Api_call
 from .token_manager import Token_Manager
+from .logger import Logger
 
 class Login:
 	def __init__(self):
 		self.username = ""
 		self.password = ""
 		self.path = "login"
+		self.logger = Logger()
 
 	def get_cred(self):
 		username = input("Enter username : ")
@@ -27,18 +29,18 @@ class Login:
 
 		resp = Api_call().apicall(payload, headers, self.path)
 		if resp.get("status") == USERNAME_NOT_FOUND:
-			print ("Please enter an username")
+			self.logger.fail("Please enter an username")
 			return 0
 
 		if resp.get("status") == PASSWORD_NOT_FOUND:
-			print ("Please provide a password")
+			self.logger.fail("Please provide a password")
 			return 0
 
 		if resp.get("status") == ERROR:
 			data = resp.get("data")
 			code = data.get("code")
 			message = data.get("message")
-			print ("{} : {}".format(code, message))
+			self.logger.fail("{} : {}".format(code, message))
 			return 0
 
 		if resp.get("status") == OK:
@@ -47,7 +49,7 @@ class Login:
 
 			r = Token_Manager().save_token(auth_token)
 
-			print ("You have been successfuly logged in")
+			self.logger.success("You have been successfuly logged in")
 			return 1
 
 		return 0

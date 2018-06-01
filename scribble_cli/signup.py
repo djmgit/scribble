@@ -1,6 +1,7 @@
 from .statuses import *
 import getpass
 from .api_call import Api_call
+from .logger import Logger
 
 class Signup:
 	def __init__(self):
@@ -8,6 +9,7 @@ class Signup:
 		self.password = ""
 		self.repassword = ""
 		self.path = "signup"
+		self.logger = Logger()
 
 	def get_cred(self):
 		username = input("Enter username : ")
@@ -23,7 +25,7 @@ class Signup:
 		payload = {}
 
 		if self.password != self.repassword:
-			print ("Passwords do not match!. Please try again.")
+			self.logger.fail("Passwords do not match!. Please try again.")
 			return 0
 
 		payload['username'] = self.username
@@ -31,20 +33,20 @@ class Signup:
 
 		resp = Api_call().apicall(payload, headers, self.path)
 		if resp.get("status") == USERNAME_NOT_FOUND:
-			print ("Please enter an username")
+			self.logger.fail("Please enter an username")
 			return 0
 
 		if resp.get("status") == PASSWORD_NOT_FOUND:
-			print ("Please provide a password")
+			self.logger.fail("Please provide a password")
 			return 0
 
 		if resp.get("status") == ERROR:
 			data = resp.get("data")
 			code = data.get("code")
 			message = data.get("message")
-			print ("{} : {}".format(code, message))
+			self.logger.fail("{} : {}".format(code, message))
 			return 0
 
 		if resp.get("status") == OK:
-			print ("You have been registered succesfully. Please login to enjoy scribble")
+			self.logger.success("You have been registered succesfully. Please login to enjoy scribble")
 			return 1

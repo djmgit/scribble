@@ -1,12 +1,14 @@
 import json
 import requests
 from .config import API_BASE_URL
+from .logger import Logger
 
 class Api_call:
 	def __init__(self):
 		self.API_BASE_URL = API_BASE_URL
 		self.requestPayload = {}
 		self.headers = {}
+		self.logger = Logger()
 
 	def apicall(self, payload, headers, path):
 		self.headers["Content-Type"] = "application/json"
@@ -26,7 +28,7 @@ class Api_call:
 			resp = requests.request("POST", self.API_BASE_URL + '/' + path, data=json.dumps(payload), headers=self.headers)
 			json_data = resp.json()
 		except:
-			print ("Scribble is sleeping!")
+			self.logger.info("Scribble is sleeping!")
 			print ("Formally speaking, the hasura cluster is sleeping due to inactivity, please wake it up :P")
 			exit()
 

@@ -3,6 +3,7 @@ import getpass
 from .api_call import Api_call
 from .token_manager import Token_Manager
 from tabulate import tabulate
+from .logger import Logger
 
 class View_by_id:
 
@@ -10,6 +11,7 @@ class View_by_id:
 		self.token = ""
 		self.path = "note_by_id"
 		self.note_id = ""
+		self.logger = Logger()
 
 	def set_params(self, note_id):
 		token = Token_Manager().get_token()
@@ -32,24 +34,24 @@ class View_by_id:
 		resp = Api_call().apicall(payload, headers, self.path)
 
 		if resp.get("status") == TOKEN_NOT_FOUND or resp.get("status") == NOT_LOGGED_IN :
-			print ("You are not logged in. Please log in first.")
+			self.logger.fail("You are not logged in. Please log in first.")
 			return 0
 
 		if resp.get("status") == NOTE_ID_NOT_FOUND:
-			print ("Please mention a note id")
+			self.logger.fail("Please mention a note id")
 			return 0
 
 		if resp.get("status") == ERROR:
 			data = resp.get("data")
 			code = data.get("code")
 			message = data.get("message")
-			print ("{} : {}".format(code, message))
+			self.logger.fail("{} : {}".format(code, message))
 			return 0
 
 		data = resp.get("data")
 
 		if len(data) == 0:
-			print ("No note with id {} found!".format(self.note_id))
+			self.logger.info("No note with id {} not found!".format(self.note_id))
 			exit()
 		
 		data = data[0]

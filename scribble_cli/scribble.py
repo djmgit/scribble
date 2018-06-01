@@ -8,10 +8,13 @@ from .view_by_id import View_by_id
 from .note import Note
 from .search import Search
 from .delete import Delete
+from .logger import Logger
 
 # declaring constants
 
 ACTIONS = ["register", "login", "note", "view", "search", "delete"]
+
+logger = Logger()
 
 # defining functions to take care of different actions
 
@@ -20,14 +23,14 @@ def parse_and_execute_signup():
 	obj.get_cred()
 	status = obj.signup()
 	if status == 1:
-		print ("Scribble executed successfully!")
+		logger.success("Scribble executed successfully!")
 
 def parse_and_execute_login():
 	obj = Login()
 	obj.get_cred()
 	status = obj.login()
 	if status == 1:
-		print ("Scribble executed successfully!") 
+		logger.success("Scribble executed successfully!") 
 
 def parse_and_execute_note():
 	note_title = None
@@ -76,7 +79,7 @@ def parse_and_execute_note():
 	status = obj.save_note()
 
 	if status == 1:
-		print ("Scribble executed successfully!")
+		logger.success("Scribble executed successfully!")
 
 def parse_and_execute_view():
 	note_id = None
@@ -99,7 +102,7 @@ def parse_and_execute_view():
 		status = obj.view_all()
 
 	if status == 1:
-		print ("Scribble executed successfully!")
+		logger.success("Scribble executed successfully!")
 
 def parse_and_execute_delete():
 	note_id = None
@@ -121,7 +124,7 @@ def parse_and_execute_delete():
 	status = obj.delete()
 
 	if status == 1:
-		print ("Scribble executed successfully!")
+		logger.success("Scribble executed successfully!")
 
 def parse_and_execute_search():
 	fields, phrase = None, None
@@ -150,7 +153,7 @@ def parse_and_execute_search():
 	status = obj.search()
 
 	if status == 1:
-		print ("Scribble executed successfully!")
+		logger.success("Scribble executed successfully!")
 
 def main():
 
