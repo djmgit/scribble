@@ -12,7 +12,7 @@ class Search:
 		self.path = "note_search"
 		self.search_data = ""
 		self.fields = ""
-		self.body_length = 72
+		self.body_length = 52
 		self.logger = Logger()
 
 	def set_params(self, search_data, fields=None):
@@ -66,7 +66,11 @@ class Search:
 		table_headers = ["Note Id", "Note Tile", "Note Body", "Keywords", "Category"]
 
 		for note in data:
-			table.append([note["note_id"], note["note_title"], note["note_body"], note["keywords"], note["category"]])
+			if len(note["note_body"]) > 52:
+				body_text = note["note_body"][:self.body_length] + "..."
+			else:
+				body_text = note["note_body"]
+			table.append([note["note_id"], note["note_title"], body_text, note["keywords"], note["category"]])
 
 		print ("\n")
 		print (tabulate(table, table_headers, tablefmt="orgtbl"))
