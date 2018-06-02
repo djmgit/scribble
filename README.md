@@ -53,4 +53,47 @@ Your note has been save successfully!
 Scribble executed successfully!
 ```
 
+### Viewing notes
+
+Viewing notes is also very easy. You can view all notes using ```scribble view``` command.
+
+```
+scribble view
+Retrieving your notes...
+
+|   Note id | Note                                  |
+|-----------+---------------------------------------|
+|        11 | this is a note from command line      |
+|        12 | this is another note from terminal    |
+|        14 | app is packaged                       |
+|        15 | app is deployed                       |
+|        17 | this is from extension                |
+|        18 | this is another from chrome extension |
+|        19 | scribble is fun                       |
+
+```
+
+Inorder to view the details of a particular note, just mention the note id of that note.
+
+```
+scribble view -i 19
+
+Retrieving your note...
+
+
+#19 scribble is fun
+====================================================================
+
+
+This is anoter note.
+
+
+
+Keywords : testing
+
+
+category : beginner
+
+```
+
 
