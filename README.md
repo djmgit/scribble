@@ -1,5 +1,15 @@
 ## Scribble CLI
 
+## Setting up Scribble
+
+Scribble CLI, as of now has to be built from the source. It is extremely easy and can be seen below :
+
+- Clone this repo or clone your own copy after forking.
+- Enter into the repository and open in terminal.
+- Execute ```python setup.py install```. You may have to provide superuser access.
+
+Scribble will be installed on your system.
+
 ## How to use
 
 Once the application has been installed, you need to first register yourself with scribble. This is extremely easy.
