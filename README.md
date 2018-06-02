@@ -96,4 +96,31 @@ category : beginner
 
 ```
 
+### Searching notes
+
+You can always search existing notes for a given word or phrase. All the notes containg your search phrase will be filtered
+and shown to you. Notes can be searched using the ```scribble search``` command.
+
+```
+scribble search -p nano
+
+|   Note Id | Note Tile                          | Note Body                                    | Keywords    | Category   |
+|-----------+------------------------------------+----------------------------------------------+-------------+------------|
+|        11 | this is a note from command line   | this is from nano, cool right?               | fun         |            |
+|        12 | this is another note from terminal | This is yet another from nano, oh yeahhhhh!! | fun,fun,fun |            |
+
+```
+Using the search command with a search phrase specified by the -p siwtch, all the fields of all the notes are searched for a
+match. However if we want to search in only particular fiels, then we can mention those fields separately.
+
+```
+ scribble search -p 'packaged' -f 'note_title,note_body'
+ 
+|   Note Id | Note Tile       | Note Body                                               | Keywords   | Category  |
+|-----------+-----------------+---------------------------------------------------------+------------+-----------|
+|        14 | app is packaged | The app is now packaged and can be installed using p... |            |           |
+
+
+
+
 
