@@ -1,5 +1,11 @@
 ## Scribble CLI
 
+## What is Scribble
+
+Scribble is primarily a terminal based note taking application for devs. It allow us to create notes, view existing notes, search existing notes, delete notes from the terminal itself. We can take note while working on terminal without switching to any other web based or desktop based application.
+
+Scribble CLI used [Scribble API](https://github.com/djmgit/scribble_api) as the backend API for data and auth services.
+
 ## Setting up Scribble
 
 Scribble CLI, as of now has to be built from the source. It is extremely easy and can be seen below :
