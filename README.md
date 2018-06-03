@@ -1,5 +1,7 @@
 ## Scribble CLI
 
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/NsqwQYdDa28/0.jpg)](http://www.youtube.com/watch?v=NsqwQYdDa28 "Using scribble from terminal")
+
 ## What is Scribble
 
 Scribble is primarily a terminal based note taking application for devs. It allow us to create notes, view existing notes, search existing notes, delete notes from the terminal itself. We can take note while working on terminal without switching to any other web based or desktop based application.
