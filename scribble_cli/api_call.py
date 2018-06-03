@@ -30,7 +30,7 @@ class Api_call:
 		except:
 			self.logger.info("Scribble is sleeping!")
 			print ("Formally speaking, the hasura cluster is sleeping due to inactivity, please wake it up :P")
-			print ("Visit http://auth.exemplification12.hasura-app.io/ui to wake your cluster up")
+			print ("Visit https://auth.accidentally14.hasura-app.io/ui to wake your cluster up")
 			exit()
 
 		return json_data
